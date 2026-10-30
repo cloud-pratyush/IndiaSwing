@@ -58,15 +58,15 @@ output:
   max_chart_tickers: 60         # chart data written for this many signal tickers
   chart_bars: 126
 
-# 30 large NIFTY 50 stocks grouped by NSE sector index (bare symbols; ".NS" is added automatically).
+# 49 NIFTY 50 stocks (M&M and Tata Motors left out) grouped by NSE sector index (bare symbols; ".NS" is added automatically).
 # If a sector index is not available on Yahoo, that sector's rule is skipped and a warning is shown.
 sectors:
-  BANK:    {index: "^NSEBANK",   name: Financials (Bank Nifty), tickers: [HDFCBANK, ICICIBANK, AXISBANK, SBIN, KOTAKBANK, BAJFINANCE, BAJAJFINSV]}
-  IT:      {index: "^CNXIT",     name: IT,                      tickers: [INFY, TCS, HCLTECH, TECHM]}
-  AUTO:    {index: "^CNXAUTO",   name: Auto,                    tickers: [MARUTI, EICHERMOT]}
-  FMCG:    {index: "^CNXFMCG",   name: FMCG,                    tickers: [ITC, HINDUNILVR, NESTLEIND]}
-  PHARMA:  {index: "^CNXPHARMA", name: Pharma,                  tickers: [SUNPHARMA]}
-  METAL:   {index: "^CNXMETAL",  name: Metals,                  tickers: [TATASTEEL, JSWSTEEL]}
-  ENERGY:  {index: "^CNXENERGY", name: Energy,                  tickers: [RELIANCE, NTPC, POWERGRID, ONGC, COALINDIA]}
-  INFRA:   {index: "^CNXINFRA",  name: Infra & Telecom,         tickers: [LT, BHARTIARTL, ADANIPORTS, ULTRACEMCO]}
-  CONSUM:  {index: "^CNXCONSUM", name: Consumption,             tickers: [TITAN, ASIANPAINT]}
+  BANK:    {index: "^NSEBANK",   name: Financials (Bank Nifty), tickers: [HDFCBANK, ICICIBANK, AXISBANK, SBIN, KOTAKBANK, BAJFINANCE, BAJAJFINSV, INDUSINDBK, SHRIRAMFIN, HDFCLIFE, SBILIFE, JIOFIN]}
+  IT:      {index: "^CNXIT",     name: IT,                      tickers: [INFY, TCS, HCLTECH, TECHM, WIPRO]}
+  AUTO:    {index: "^CNXAUTO",   name: Auto,                    tickers: [MARUTI, EICHERMOT, BAJAJ-AUTO, HEROMOTOCO]}
+  FMCG:    {index: "^CNXFMCG",   name: FMCG,                    tickers: [ITC, HINDUNILVR, NESTLEIND, TATACONSUM]}
+  PHARMA:  {index: "^CNXPHARMA", name: Pharma,                  tickers: [SUNPHARMA, CIPLA, DRREDDY, APOLLOHOSP]}
+  METAL:   {index: "^CNXMETAL",  name: Metals,                  tickers: [TATASTEEL, JSWSTEEL, HINDALCO]}
+  ENERGY:  {index: "^CNXENERGY", name: Energy,                  tickers: [RELIANCE, NTPC, POWERGRID, ONGC, COALINDIA, BPCL]}
+  INFRA:   {index: "^CNXINFRA",  name: Infra & Telecom,         tickers: [LT, BHARTIARTL, ADANIPORTS, ULTRACEMCO, GRASIM, ADANIENT, BEL]}
+  CONSUM:  {index: "^CNXCONSUM", name: Consumption,             tickers: [TITAN, ASIANPAINT, TRENT, ETERNAL]}
