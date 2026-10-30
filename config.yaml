@@ -1,0 +1,72 @@
+# India swing dashboard configuration. Edit freely; no code changes needed.
+
+market:
+  name: NIFTY 50
+  benchmark: "^NSEI"
+  vol_index: "^INDIAVIX"
+  vol_name: India VIX
+  timezone: Asia/Kolkata
+  close_cutoff: "15:45"     # before this local time, today's bar is treated as unfinished and dropped
+  currency: "₹"
+  ticker_suffix: ".NS"      # Yahoo Finance suffix for NSE stocks (added automatically)
+
+account:
+  size: 1000000        # ₹10,00,000; used only for position-size suggestions
+  risk_pct: 0.01       # risk 1% of account per trade
+  max_position_pct: 0.25
+
+data:
+  period: "2y"
+  min_bars: 260        # need ~1y for 52w high / 6M relative strength
+  chunk_size: 40
+
+liquidity:
+  min_price: 50                 # ₹
+  min_turnover: 300000000       # ₹30 crore, 20-day average daily turnover
+
+indicators:
+  sma_fast: 50
+  sma_slow: 200
+  ema_trend: 21
+  bb_short: 20
+  bb_long: 80
+
+setups:
+  breakout:        {atr_pct: 0.015, vol_mult: 1.5}
+  mean_reversion:  {rsi_max: 40, stoch_max: 30, bb80_tol: 1.01}
+  pullback:        {ema_tol: 1.005, min_adx: 18}
+  squeeze:         {width_tol: 1.05, rsi_min: 45, rsi_max: 55, lookback: 100}
+  shock:           {drop_pct: -0.05}
+
+trade_plan:
+  stop_atr_mult: 2.0
+  reward_risk: 2.5
+
+gating:
+  vix_block: 22                 # India VIX above this: breakout/pullback are filtered out
+  sector_must_beat_spy: [breakout, pullback]   # "spy" here means the benchmark (NIFTY 50)
+  regime_allowed:               # setups shown per NIFTY 50 trend direction
+    Bull:     [breakout, mean_reversion, pullback, squeeze, shock]
+    Sideways: [mean_reversion, pullback, squeeze, shock]
+    Bear:     [mean_reversion, squeeze, shock]
+
+earnings:
+  warn_days: 5
+
+output:
+  max_per_setup: 6              # cards shown per setup section (best relative strength first)
+  max_chart_tickers: 60         # chart data written for this many signal tickers
+  chart_bars: 126
+
+# 30 large NIFTY 50 stocks grouped by NSE sector index (bare symbols; ".NS" is added automatically).
+# If a sector index is not available on Yahoo, that sector's rule is skipped and a warning is shown.
+sectors:
+  BANK:    {index: "^NSEBANK",   name: Financials (Bank Nifty), tickers: [HDFCBANK, ICICIBANK, AXISBANK, SBIN, KOTAKBANK, BAJFINANCE, BAJAJFINSV]}
+  IT:      {index: "^CNXIT",     name: IT,                      tickers: [INFY, TCS, HCLTECH, TECHM]}
+  AUTO:    {index: "^CNXAUTO",   name: Auto,                    tickers: [MARUTI, EICHERMOT]}
+  FMCG:    {index: "^CNXFMCG",   name: FMCG,                    tickers: [ITC, HINDUNILVR, NESTLEIND]}
+  PHARMA:  {index: "^CNXPHARMA", name: Pharma,                  tickers: [SUNPHARMA]}
+  METAL:   {index: "^CNXMETAL",  name: Metals,                  tickers: [TATASTEEL, JSWSTEEL]}
+  ENERGY:  {index: "^CNXENERGY", name: Energy,                  tickers: [RELIANCE, NTPC, POWERGRID, ONGC, COALINDIA]}
+  INFRA:   {index: "^CNXINFRA",  name: Infra & Telecom,         tickers: [LT, BHARTIARTL, ADANIPORTS, ULTRACEMCO]}
+  CONSUM:  {index: "^CNXCONSUM", name: Consumption,             tickers: [TITAN, ASIANPAINT]}

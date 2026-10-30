@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>India Swing Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+<header>
+  <h1>India Swing Dashboard</h1>
+  <div class="hdr-right">
+    <span id="updated" class="muted"></span>
+    <button id="theme-btn" class="chip" type="button" title="Switch between dark and light mode"></button>
+  </div>
+</header>
+<div id="banner" class="banner" hidden></div>
+
+<main class="grid">
+  <section class="col" id="col-left">
+    <h2>Market Overview</h2>
+    <div class="card"><div id="spy-chart" class="chart"></div></div>
+    <div class="card" id="regime-box"></div>
+
+    <h2>Sector Overview</h2>
+    <div class="card"><div id="sector-chart" class="chart"></div><div id="sector-legend" class="legend"></div></div>
+    <div class="card"><table id="sector-table"></table></div>
+  </section>
+
+  <section class="col" id="col-mid">
+    <h2>Stock Ranking</h2>
+    <div class="card filters">
+      <div id="chips-setup" class="chips"></div>
+      <div class="frow">
+        <select id="f-sector" aria-label="Sector"></select>
+      </div>
+      <div class="frow">
+        <select id="f-sort" aria-label="Sort by"></select>
+        <button id="f-dir" class="chip" type="button" title="Reverse sort order"></button>
+      </div>
+      <div class="frow">
+        <label><input type="checkbox" id="f-earn"> hide earnings soon</label>
+        <label><input type="checkbox" id="show-filtered"> show filtered</label>
+      </div>
+    </div>
+    <div class="card scroll"><table id="ranking"></table></div>
+  </section>
+
+  <section class="col" id="col-right">
+    <h2>Trend Charts</h2>
+    <div class="card" id="big">
+      <div class="mini-title"><span id="big-title"></span><span id="big-sub" class="muted small"></span></div>
+      <div id="big-chart" class="chart tall"></div>
+      <div id="big-rsi" class="chart rsi"></div>
+    </div>
+    <div class="card" id="detail"></div>
+    <div id="setup-sections"></div>
+  </section>
+</main>
+
+<footer id="rules" class="muted small"></footer>
+<script src="app.js"></script>
+</body>
+</html>
